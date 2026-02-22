@@ -12,7 +12,7 @@ function getRemainingDays(date) {
 export function getDaysData(weatherData) {
   let results = [];
   for (let i = 0; i < 15; i++) {
-    let temp = `Temperature: ${weatherData.days[i].tempmin} / ${weatherData.days[i].tempmax}`;
+    let temp = `${weatherData.days[i].tempmin} / ${weatherData.days[i].tempmax}`;
 
     let remaining = getRemainingDays(weatherData.days[i].datetime);
     let due = new Date(weatherData.days[i].datetime);
@@ -51,14 +51,17 @@ export function getHourlyData(weatherData) {
   return results;
 }
 
+// 3. Getting today's data for now
 export function getTodayData(weatherData) {
   let results = [];
+  const now = new Date();
+  let hours = now.getHours();
 
   results.push({
-    temperature: weatherData.days[0].temp,
-    precipitation: weatherData.days[0].precip,
-    windSpeed: weatherData.days[0].windspeed,
-    humidity: weatherData.days[0].humidity,
+    temperature: weatherData.days[0].hours[hours].temp,
+    precipitation: weatherData.days[0].hours[hours].precip,
+    windSpeed: weatherData.days[0].hours[hours].windspeed,
+    humidity: weatherData.days[0].hours[hours].humidity,
   });
 
   return results;

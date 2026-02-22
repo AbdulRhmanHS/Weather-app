@@ -1,0 +1,72 @@
+:root {
+  --main-padding: 5px;
+  --main-borders: 10px;
+  --main-clr: rgba(184, 180, 180, 0.482);
+}
+
+html,
+body {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 2 * var(--main-padding));
+  gap: 5px;
+  padding: var(--main-padding);
+}
+
+p {
+  margin: 0;
+}
+
+.today,
+.hourly,
+.daily {
+  width: 100%;
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--main-clr);
+  border-radius: var(--main-borders);
+  padding: 5px;
+}
+
+.hourly {
+  background: none;
+  flex-direction: row;
+  gap: 5px;
+  overflow-x: auto;
+}
+
+.daily {
+  align-items: start;
+  background: none;
+  gap: 5px;
+}
+
+.day-card {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  text-align: center;
+  width: 80px;
+  height: 175px;
+  border-radius: var(--main-borders);
+  background-color: var(--main-clr);
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+}
+
+.day-tab {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px;
+  height: 30px;
+  border-radius: var(--main-borders);
+  background-color: var(--main-clr);
+  box-sizing: border-box;
+}

@@ -1,5 +1,7 @@
+import './styles.css';
 import weatherData from './example.json';
 import { getDaysData, getHourlyData, getTodayData } from './core/data';
+import { showTodayData, showHourlyData, showDailyData } from './dom/mainUI';
 
 // async function getWeatherData() {
 //   try {
@@ -18,3 +20,7 @@ console.log(weatherData);
 console.log(getDaysData(weatherData));
 console.log(getHourlyData(weatherData));
 console.log(getTodayData(weatherData));
+
+showTodayData(getTodayData(weatherData));
+showHourlyData(getHourlyData(weatherData));
+showDailyData(getDaysData(weatherData));
