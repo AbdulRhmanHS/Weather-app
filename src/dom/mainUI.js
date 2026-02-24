@@ -1,17 +1,19 @@
 export function showTodayData(data) {
   const todaySection = document.querySelector('.today');
 
+  const location = document.createElement('p');
   const temp = document.createElement('p');
   const precip = document.createElement('p');
   const hum = document.createElement('p');
   const windSpeed = document.createElement('p');
 
+  location.textContent = `Location: ${data[0].location}`;
   temp.textContent = `Temperature is: ${data[0].temperature}`;
   precip.textContent = `Precipitation: ${data[0].precipitation}`;
   hum.textContent = `Humidity: ${data[0].humidity}`;
   windSpeed.textContent = `Wind Speed: ${data[0].windSpeed}`;
 
-  todaySection.append(temp, precip, hum, windSpeed);
+  todaySection.append(location, temp, precip, hum, windSpeed);
 }
 
 export function showHourlyData(data) {

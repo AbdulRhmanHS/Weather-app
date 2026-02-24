@@ -52,12 +52,13 @@ export function getHourlyData(weatherData) {
 }
 
 // 3. Getting today's data for now
-export function getTodayData(weatherData) {
+export function getTodayData(weatherData, locationName) {
   let results = [];
   const now = new Date();
   let hours = now.getHours();
 
   results.push({
+    location: locationName,
     temperature: weatherData.days[0].hours[hours].temp,
     precipitation: weatherData.days[0].hours[hours].precip,
     windSpeed: weatherData.days[0].hours[hours].windspeed,
