@@ -66,15 +66,14 @@ export function getHourlyData(weatherData) {
 // 3. Getting today's data for now
 export function getTodayData(weatherData, locationName) {
   let results = [];
-  const now = new Date();
-  let hours = now.getHours();
 
   results.push({
     location: locationName,
-    temperature: units.temp(weatherData.days[0].hours[hours].temp),
-    precipitation: units.precip(weatherData.days[0].hours[hours].precip),
-    windSpeed: units.speed(weatherData.days[0].hours[hours].windspeed),
-    humidity: units.percent(weatherData.days[0].hours[hours].humidity),
+    temperature: units.temp(weatherData.currentConditions.temp),
+    precipitation: units.precip(weatherData.currentConditions.precip),
+    windSpeed: units.speed(weatherData.currentConditions.windspeed),
+    humidity: units.percent(weatherData.currentConditions.humidity),
+    icon: weatherData.currentConditions.icon,
   });
 
   return results;

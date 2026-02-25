@@ -1,19 +1,29 @@
 export function showTodayData(data) {
   const todaySection = document.querySelector('.today');
 
-  const location = document.createElement('p');
+  const iconData = mapIcon(data[0].icon);
+  const icon = document.createElement('span');
+  icon.classList.add('material-symbols-rounded', iconData.colorClass);
+
   const temp = document.createElement('p');
+  temp.classList.add('main-temp');
+
+  const info = document.createElement('div');
+  info.classList.add('today-info');
+  const location = document.createElement('p');
   const precip = document.createElement('p');
   const hum = document.createElement('p');
   const windSpeed = document.createElement('p');
 
+  icon.textContent = iconData.name;
+  temp.textContent = `${data[0].temperature}`;
   location.textContent = `Location: ${data[0].location}`;
-  temp.textContent = `Temperature is: ${data[0].temperature}`;
   precip.textContent = `Precipitation: ${data[0].precipitation}`;
   hum.textContent = `Humidity: ${data[0].humidity}`;
   windSpeed.textContent = `Wind Speed: ${data[0].windSpeed}`;
 
-  todaySection.append(location, temp, precip, hum, windSpeed);
+  info.append(location, precip, hum, windSpeed);
+  todaySection.append(icon, temp, info);
 }
 
 export function showHourlyData(data) {

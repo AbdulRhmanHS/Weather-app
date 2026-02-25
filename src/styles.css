@@ -12,7 +12,7 @@ body {
   min-height: calc(100vh - 4 * var(--main-padding));
   padding: var(--main-padding);
   margin: 0;
-  gap: 5px;
+  gap: 10px;
 }
 
 p {
@@ -24,16 +24,16 @@ p {
 .daily {
   width: 100%;
   display: flex;
-  gap: 5px;
-  flex-direction: column;
   background-color: var(--main-clr);
   border-radius: var(--main-borders);
   box-sizing: border-box;
 }
 
 .today {
-  padding: 5px;
+  gap: 10px;
+  padding: calc(2 * var(--main-padding));
   align-items: center;
+  justify-content: center;
 }
 
 .hourly {
@@ -45,6 +45,7 @@ p {
 }
 
 .daily {
+  flex-direction: column;
   align-items: start;
   background: none;
   gap: 5px;
@@ -55,10 +56,10 @@ p {
   flex-direction: column;
   flex-shrink: 0;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   padding: var(--main-padding);
   text-align: center;
-  width: 80px;
+  width: 100px;
   min-height: 150px;
   border-radius: var(--main-borders);
   background-color: var(--main-clr);
@@ -85,6 +86,11 @@ p {
     'opsz' 48;
   font-size: 1.5rem;
   display: inline-block;
+}
+
+.main-temp,
+.today .material-symbols-rounded {
+  font-size: 4rem;
 }
 
 /* 2. Defining High-Visibility Color Classes */
