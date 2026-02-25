@@ -8,11 +8,21 @@ function getRemainingDays(date) {
   return remaining;
 }
 
+const units = {
+  temp: (val) => `${Math.round(val)}°C`,
+  shortTemp: (val) => `${Math.round(val)}°`,
+  speed: (val) => `${Math.round(val)} km/h`,
+  precip: (val) => `${Math.round(val)} mm`,
+  percent: (val) => `${Math.round(val)}%`,
+};
+
 // 1. Getting data for 15 days
 export function getDaysData(weatherData) {
   let results = [];
   for (let i = 0; i < 15; i++) {
-    let temp = `${weatherData.days[i].tempmin} / ${weatherData.days[i].tempmax}`;
+    let icon = weatherData.days[i].icon;
+    let condition = weatherData.days[i].conditions;
+    let temp = `${units.shortTemp(weatherData.days[i].tempmin)} / ${units.shortTemp(weatherData.days[i].tempmax)}`;
 
     let remaining = getRemainingDays(weatherData.days[i].datetime);
     let due = new Date(weatherData.days[i].datetime);
@@ -21,7 +31,8 @@ export function getDaysData(weatherData) {
     if (remaining > 1 || remaining < 0) day = format(due, 'd MMM');
 
     results.push({
-      condition: weatherData.days[i].conditions,
+      icon: icon,
+      condition: condition,
       temperature: temp,
       time: day,
     });
@@ -43,8 +54,9 @@ export function getHourlyData(weatherData) {
     let hours = format(hourObj, 'h a');
 
     results.push({
+      icon: hourData.icon,
       condition: hourData.conditions,
-      temperature: hourData.temp,
+      temperature: units.shortTemp(hourData.temp),
       time: hours,
     });
   }
@@ -59,10 +71,10 @@ export function getTodayData(weatherData, locationName) {
 
   results.push({
     location: locationName,
-    temperature: weatherData.days[0].hours[hours].temp,
-    precipitation: weatherData.days[0].hours[hours].precip,
-    windSpeed: weatherData.days[0].hours[hours].windspeed,
-    humidity: weatherData.days[0].hours[hours].humidity,
+    temperature: units.temp(weatherData.days[0].hours[hours].temp),
+    precipitation: units.precip(weatherData.days[0].hours[hours].precip),
+    windSpeed: units.speed(weatherData.days[0].hours[hours].windspeed),
+    humidity: units.percent(weatherData.days[0].hours[hours].humidity),
   });
 
   return results;

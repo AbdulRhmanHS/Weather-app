@@ -8,9 +8,11 @@ html,
 body {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 2 * var(--main-padding));
-  gap: 5px;
+  justify-content: space-between;
+  min-height: calc(100vh - 4 * var(--main-padding));
   padding: var(--main-padding);
+  margin: 0;
+  gap: 5px;
 }
 
 p {
@@ -24,10 +26,14 @@ p {
   display: flex;
   gap: 5px;
   flex-direction: column;
-  align-items: center;
   background-color: var(--main-clr);
   border-radius: var(--main-borders);
+  box-sizing: border-box;
+}
+
+.today {
   padding: 5px;
+  align-items: center;
 }
 
 .hourly {
@@ -35,6 +41,7 @@ p {
   flex-direction: row;
   gap: 5px;
   overflow-x: auto;
+  flex-grow: 1;
 }
 
 .daily {
@@ -49,10 +56,10 @@ p {
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  padding: 3px;
+  padding: var(--main-padding);
   text-align: center;
   width: 80px;
-  height: 175px;
+  min-height: 150px;
   border-radius: var(--main-borders);
   background-color: var(--main-clr);
   box-sizing: border-box;
@@ -65,8 +72,54 @@ p {
   align-items: center;
   gap: 10px;
   padding: 5px;
-  height: 30px;
   border-radius: var(--main-borders);
   background-color: var(--main-clr);
   box-sizing: border-box;
+}
+
+.material-symbols-rounded {
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48;
+  font-size: 1.5rem;
+  display: inline-block;
+}
+
+/* 2. Defining High-Visibility Color Classes */
+
+.sunny {
+  color: #f57c00; /* Darker Orange-Amber for contrast */
+  filter: drop-shadow(1px 2px 3px rgba(245, 124, 0, 0.3));
+}
+
+.night {
+  color: #5c6bc0; /* Deeper Indigo so it's visible */
+  filter: drop-shadow(1px 2px 3px rgba(92, 107, 192, 0.3));
+}
+
+.rainy {
+  color: #1976d2; /* Stronger Blue */
+  filter: drop-shadow(1px 2px 3px rgba(25, 118, 210, 0.3));
+}
+
+.snowy {
+  color: #81d4fa; /* Sky Blue instead of white so it shows up */
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+.windy {
+  color: #00897b; /* Deeper Teal */
+  filter: drop-shadow(1px 1px 2px rgba(0, 137, 123, 0.2));
+}
+
+.cloudy {
+  color: #78909c; /* Darker Slate Grey */
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.15));
+}
+
+.partial {
+  color: #fbc02d; /* Deep Yellow */
+  filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.1));
 }

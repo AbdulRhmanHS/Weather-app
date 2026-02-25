@@ -8,10 +8,13 @@
   "dictionaries": [],
   "words": [],
   "ignoreWords": [
+    "fontawesome",
     "fuser",
+    "opsz",
     "precip",
     "tempmax",
     "tempmin",
+    "wght",
     "windspeed"
   ],
   "import": []
