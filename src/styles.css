@@ -61,8 +61,8 @@ p {
   background: none;
   flex-direction: row;
   gap: 5px;
-  overflow-x: auto;
   flex-grow: 1;
+  overflow-x: auto;
 }
 
 .daily {
@@ -125,10 +125,13 @@ p {
 
 .main-temp,
 .today .material-symbols-rounded {
-  font-size: 4rem;
+  font-size: clamp(3rem, 10vw, 4rem);
 }
 
-/* 2. Defining High-Visibility Color Classes */
+.today-info,
+.units-btn {
+  font-size: clamp(0.7rem, 2vw, 1rem);
+}
 
 .sunny {
   color: #f57c00; /* Darker Orange-Amber for contrast */
@@ -170,4 +173,26 @@ p {
   color: #fbc02d; /* Deep Yellow */
   filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.1));
   filter: drop-shadow(1px 2px 3px var(--shadow-clr));
+}
+
+/* 1. The width of the entire scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 8px;
+}
+
+/* 2. The Track (the background) */
+::-webkit-scrollbar-track {
+  background: none;
+  border-radius: var(--main-borders);
+}
+
+/* 3. The Thumb (the moving part) */
+::-webkit-scrollbar-thumb {
+  background: var(--main-clr);
+  border-radius: var(--main-borders);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--shadow-clr);
 }
