@@ -1,5 +1,17 @@
+import clearDayImg from '../background/clear-day.webp';
+import cloudyDayImg from '../background/cloudy-day.webp';
+import rainyDayImg from '../background/rainy-day.webp';
+import partlyCloudyDayImg from '../background/partly-cloudy-day.webp';
+import snowyDayImg from '../background/snowy-day.webp';
+import clearNightImg from '../background/clear-night.webp';
+import rainyNightImg from '../background/rainy-night.webp';
+import partlyCloudyNightImg from '../background/partly-cloudy-night.webp';
+
 export function showTodayData(data) {
+  updateBackground(data[0].icon);
+
   const todaySection = document.querySelector('.today');
+  todaySection.innerHTML = '';
 
   const iconData = mapIcon(data[0].icon);
   const icon = document.createElement('span');
@@ -23,6 +35,7 @@ export function showTodayData(data) {
   windSpeed.textContent = `Wind Speed: ${data[0].windSpeed}`;
 
   info.append(location, precip, hum, windSpeed);
+  createUnitsBtn(info);
   todaySection.append(icon, temp, info);
 }
 
@@ -92,4 +105,30 @@ function mapIcon(apiIcon) {
   };
 
   return iconMap[apiIcon] || { name: 'help', colorClass: '' };
+}
+
+function updateBackground(iconCode) {
+  const bgElement = document.querySelector('.bg');
+
+  // Mapping the API strings to the imported variables
+  const imageMap = {
+    'clear-day': clearDayImg,
+    cloudy: cloudyDayImg,
+    rain: rainyDayImg,
+    snow: snowyDayImg,
+    'clear-night': clearNightImg,
+    'rain-night': rainyNightImg,
+    'partly-cloudy-day': partlyCloudyDayImg,
+    'partly-cloudy-night': partlyCloudyNightImg,
+  };
+
+  // Updating the src of your <img> element
+  bgElement.src = imageMap[iconCode] || clearDayImg;
+}
+
+function createUnitsBtn(container) {
+  const unitsBtn = document.createElement('button');
+  unitsBtn.classList.add('units-btn');
+  unitsBtn.textContent = 'Change Units';
+  container.append(unitsBtn);
 }

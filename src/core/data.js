@@ -9,12 +9,31 @@ function getRemainingDays(date) {
 }
 
 const units = {
-  temp: (val) => `${Math.round(val)}°C`,
-  shortTemp: (val) => `${Math.round(val)}°`,
-  speed: (val) => `${Math.round(val)} km/h`,
-  precip: (val) => `${Math.round(val)} mm`,
-  percent: (val) => `${Math.round(val)}%`,
+  metric: {
+    temp: (val) => `${Math.round(val)}°C`,
+    shortTemp: (val) => `${Math.round(val)}°`,
+    speed: (val) => `${Math.round(val)} km/h`,
+    precip: (val) => `${Math.round(val)} mm`,
+    percent: (val) => `${Math.round(val)}%`,
+  },
+  us: {
+    temp: (val) => `${Math.round(val)}°F`,
+    shortTemp: (val) => `${Math.round(val)}°`,
+    speed: (val) => `${Math.round(val)} mph`,
+    precip: (val) => `${Math.round(val)} in`,
+    percent: (val) => `${Math.round(val)}%`,
+  },
 };
+
+let currentSystem = 'metric';
+
+export function getCurrentSystem() {
+  return currentSystem;
+}
+
+export function setCurrentSystem(newVal) {
+  currentSystem = newVal;
+}
 
 // 1. Getting data for 15 days
 export function getDaysData(weatherData) {
@@ -22,7 +41,7 @@ export function getDaysData(weatherData) {
   for (let i = 0; i < 15; i++) {
     let icon = weatherData.days[i].icon;
     let condition = weatherData.days[i].conditions;
-    let temp = `${units.shortTemp(weatherData.days[i].tempmin)} / ${units.shortTemp(weatherData.days[i].tempmax)}`;
+    let temp = `${units[currentSystem].shortTemp(weatherData.days[i].tempmin)} / ${units[currentSystem].shortTemp(weatherData.days[i].tempmax)}`;
 
     let remaining = getRemainingDays(weatherData.days[i].datetime);
     let due = new Date(weatherData.days[i].datetime);
@@ -56,7 +75,7 @@ export function getHourlyData(weatherData) {
     results.push({
       icon: hourData.icon,
       condition: hourData.conditions,
-      temperature: units.shortTemp(hourData.temp),
+      temperature: units[currentSystem].shortTemp(hourData.temp),
       time: hours,
     });
   }
@@ -69,10 +88,16 @@ export function getTodayData(weatherData, locationName) {
 
   results.push({
     location: locationName,
-    temperature: units.temp(weatherData.currentConditions.temp),
-    precipitation: units.precip(weatherData.currentConditions.precip),
-    windSpeed: units.speed(weatherData.currentConditions.windspeed),
-    humidity: units.percent(weatherData.currentConditions.humidity),
+    temperature: units[currentSystem].temp(weatherData.currentConditions.temp),
+    precipitation: units[currentSystem].precip(
+      weatherData.currentConditions.precip
+    ),
+    windSpeed: units[currentSystem].speed(
+      weatherData.currentConditions.windspeed
+    ),
+    humidity: units[currentSystem].percent(
+      weatherData.currentConditions.humidity
+    ),
     icon: weatherData.currentConditions.icon,
   });
 

@@ -1,7 +1,9 @@
 :root {
   --main-padding: 5px;
   --main-borders: 10px;
-  --main-clr: rgba(184, 180, 180, 0.482);
+  --main-clr: rgba(0, 0, 0, 0.4);
+  --shadow-clr: rgba(0, 0, 0, 0.7);
+  --text-clr: rgb(218, 218, 218);
 }
 
 html,
@@ -13,10 +15,29 @@ body {
   padding: var(--main-padding);
   margin: 0;
   gap: 10px;
+  color: var(--text-clr);
 }
 
 p {
   margin: 0;
+}
+
+.bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  object-fit: cover;
+  z-index: -1;
+
+  filter: blur(6px) brightness(0.8);
+
+  /* This prevents the white 'halo' around the edges */
+  transform: scale(1.05);
+
+  /* Smooth transition when the image changes */
+  transition: opacity 0.5s ease-in-out;
 }
 
 .today,
@@ -49,6 +70,20 @@ p {
   align-items: start;
   background: none;
   gap: 5px;
+}
+
+.units-btn {
+  text-decoration: underline;
+  background: none;
+  padding: 0;
+  color: var(--text-clr);
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.units-btn:hover {
+  opacity: 0.8;
 }
 
 .day-card {
@@ -98,34 +133,41 @@ p {
 .sunny {
   color: #f57c00; /* Darker Orange-Amber for contrast */
   filter: drop-shadow(1px 2px 3px rgba(245, 124, 0, 0.3));
+  filter: drop-shadow(1px 2px 3px var(--shadow-clr));
 }
 
 .night {
   color: #5c6bc0; /* Deeper Indigo so it's visible */
   filter: drop-shadow(1px 2px 3px rgba(92, 107, 192, 0.3));
+  filter: drop-shadow(1px 2px 3px var(--shadow-clr));
 }
 
 .rainy {
   color: #1976d2; /* Stronger Blue */
   filter: drop-shadow(1px 2px 3px rgba(25, 118, 210, 0.3));
+  filter: drop-shadow(1px 2px 3px var(--shadow-clr));
 }
 
 .snowy {
   color: #81d4fa; /* Sky Blue instead of white so it shows up */
   filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(1px 2px 3px var(--shadow-clr));
 }
 
 .windy {
   color: #00897b; /* Deeper Teal */
   filter: drop-shadow(1px 1px 2px rgba(0, 137, 123, 0.2));
+  filter: drop-shadow(1px 2px 3px var(--shadow-clr));
 }
 
 .cloudy {
   color: #78909c; /* Darker Slate Grey */
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.15));
+  filter: drop-shadow(1px 2px 3px var(--shadow-clr));
 }
 
 .partial {
   color: #fbc02d; /* Deep Yellow */
   filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(1px 2px 3px var(--shadow-clr));
 }
